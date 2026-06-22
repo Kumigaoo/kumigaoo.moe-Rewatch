@@ -9,7 +9,19 @@
   </div>
 
   <div class="mainpage">
-    <div class="box" id="mainBox">
+    <div class="box" id="mainBox" (click)="startInput()">
+      <div class="terminal-wrap">
+        <pre class="terminal">
+          <p class="terminal__title" id="titleScreenText">Welcome to KumiOS</p>
+          <pre #instructions class="terminal__instructions"></pre>
+          <pre #output class="terminal__output"></pre>
+          <p class="terminal__prompt">&gt;<span #commandInput class="terminal__input"></span><span class="terminal__cursor" >_</span>
+          </p>
+        </pre>
+
+        <div class="terminal__interlaced"></div>
+        <div class="terminal__glare"></div>
+      </div>
       <svg class="moth" viewBox="0 0 369 228" width="100%" style="scale: 100%">
         <defs c>
           <filter
@@ -76,17 +88,7 @@
             ></feMorphology>
           </filter>
         </defs>
-        <image
-          x="1.2%"
-          y="0%"
-          width="369"
-          height="228"
-          preserveAspectRatio="xMidYMid slice"
-          src="/kumimoeR/src/assets/unnamed.png"
-          id="my-image"
-        ></image>
       </svg>
-
       <br />
     </div>
   </div>
