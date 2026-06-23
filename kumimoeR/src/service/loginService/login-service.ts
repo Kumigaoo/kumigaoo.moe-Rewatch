@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
-    return this.http.post<any>('https://localhost:7000/Login/login', { username, password });
+  login(email: string, password: string) {
+    return this.http.post<any>('https://localhost:7230/Login/login', { email, password });
   }
 }

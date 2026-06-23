@@ -1,26 +1,22 @@
-<div id="mainBody">
+<div id="mainBody" [attr.data-zoom]="zoomStep">
   <div id="rimas" style="display: none">
     <p></p>
-  </div>
-  <div class="up">
-    <div class="middletext">
-      <p>「kumi⌋</p>
-    </div>
   </div>
 
   <div class="mainpage">
     <div class="box" id="mainBox" (click)="startInput()">
       <div class="terminal-wrap">
-        <pre class="terminal">
-          <p class="terminal__title" id="titleScreenText">Welcome to KumiOS</p>
-          <pre #instructions class="terminal__instructions"></pre>
+        @if (showPrompt) {
+          <pre class="terminal">
+          <p #titleScreen class="terminal__title" id="titleScreenText"></p>
           <pre #output class="terminal__output"></pre>
           <p class="terminal__prompt">&gt;<span #commandInput class="terminal__input"></span><span class="terminal__cursor" >_</span>
           </p>
         </pre>
 
-        <div class="terminal__interlaced"></div>
-        <div class="terminal__glare"></div>
+          <div class="terminal__interlaced"></div>
+          <div class="terminal__glare"></div>
+        }
       </div>
       <svg class="moth" viewBox="0 0 369 228" width="100%" style="scale: 100%">
         <defs c>
@@ -121,6 +117,9 @@
 </audio>
 <audio hidden id="heart" loop>
   <source src="assets/audiomass-output.mp3" type="audio/mp3" />
+</audio>
+<audio hidden id="pcOn">
+  <source src="assets/PCBOOT.mp3" type="audio/mp3" />
 </audio>
 <script src="bromitas/5.js"></script>
 <script src="bromitas/random.js"></script>

@@ -289,22 +289,58 @@
   background-image: url('/assets/Compy_Screen.png');
   background-size: cover;
 }
-
-pre {
-  margin-right: 1.5vw;
-  margin-left: 1.5vw;
-  margin-top: 1vh;
-  display: table;
-  flex-wrap: wrap;
-  --side: calc(min(40vh, 10vw) / 2);
-  width: var(--side);
+.box:hover {
+  cursor: url('/assets/animals-moth-pointer.png'), auto;
+}
+:host {
+  display: block;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
+#mainBody {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform-origin: center center;
+  transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+#mainBody[data-zoom='1'] {
+  transform: scale(1.35) translateY(-9%);
+}
+
+#mainBody[data-zoom='2'] {
+  transform: scale(1.56) translateY(-14%);
+}
+
+#mainBody[data-zoom='3'] {
+  transform: scale(2) translateY(-18%);
+}
+
+#mainBody[data-zoom='0'] {
+  transform: scale(1);
+}
+pre {
+  margin-left: 1.5vw;
+  margin-top: 0.5vh;
+  display: table;
+  flex-wrap: wrap;
+  --side: calc(min(40vh, 15vw) / 2);
+  width: var(--side);
+  font-size: 100%;
+  white-space: pre-wrap;
+}
+.terminal__prompt {
+  white-space: pre-wrap;
+}
 .terminal__title {
+  margin-top: 40px;
   opacity: 90%;
   margin-bottom: 0px;
   font-size: 1.5em;
-  margin-top: 20px;
 }
 .terminal {
   color: hsl(154 84% 70%);
@@ -370,10 +406,11 @@ pre {
   font-family: monospace;
   font-size: 1.75em;
   opacity: 60%;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 .terminal__output {
   margin-left: 0px;
+  margin-bottom: 0px;
   flex-wrap: wrap;
 }
 .terminal__cursor {

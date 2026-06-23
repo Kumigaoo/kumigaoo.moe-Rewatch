@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.tiempo {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  margin: 0;
+  background-image: url('/assets/Untitled-1.png');
+  background-size: 102%;
+  background-position: right 19px;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+.tiempo {
+  vertical-align: center;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 250%;
+  color: hsl(154 84% 70%);
+  text-shadow: 0 0 4px hsl(154 84% 70%);
+  font-family: monospace;
+}
+#interlaced {
+  position: fixed;
+  background: repeating-linear-gradient(transparent 0px 1px, hsl(154 0% 0%/0.2) 3px 4px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  animation: lines 0.066666666s linear infinite;
+}
+@keyframes lines {
+  0% {
+    background-position: 0px 0px;
+  }
+  50% {
+    background-position: 0px 0px;
+  }
+  51% {
+    background-position: 0px 2px;
+  }
+  100% {
+    background-position: 0px 2px;
+  }
+}
+span {
+  opacity: 65%;
+}
