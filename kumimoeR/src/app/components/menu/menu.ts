@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../../service/loginService/login-service';
 import { Router } from '@angular/router';
+import { input } from '@angular/core';
 @Component({
   selector: 'app-menu',
   imports: [],
@@ -28,6 +29,7 @@ export class Menu implements OnInit {
   zoomStep = 0;
   private loginState: 'none' | 'awaitingUser' | 'awaitingPassword' = 'none';
   private loginUser = '';
+  readonly tokenKey = input('token');
   private realPassword = '';
   constructor(
     private authService: LoginService,
@@ -39,7 +41,7 @@ export class Menu implements OnInit {
     console.log(email, password);
     this.authService.login(email, password).subscribe({
       next: (response) => {
-        sessionStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.token);
         this.router.navigate(['/home']);
       },
       error: (error) => {
@@ -58,16 +60,28 @@ export class Menu implements OnInit {
   async startInput(): Promise<void> {
     if (this.isOnPC) {
       await this.triggerZoom();
-    } else {
-      this.isOnPC = true;
-      const audio = new Audio('assets/PCBOOT.mp3');
-      audio.play();
-      this.showPrompt = true;
-      this.showCursor = true;
-
-      this.cdr.detectChanges();
-      await this.writeText(this.titleRef.nativeElement, 'Welcome to KumiOS');
+      return;
     }
+
+    this.isOnPC = true;
+    new Audio('assets/PCBOOT.mp3').play();
+    this.showPrompt = true;
+    this.showCursor = true;
+    this.cdr.detectChanges();
+
+    // wait until the @if block has rendered and the ViewChild is resolved
+    const title = await this.waitForRef(() => this.titleRef);
+    if (!title) return;
+    await this.writeText(title.nativeElement, 'Welcome to KumiOS');
+  }
+
+  private async waitForRef<T>(get: () => T | undefined, frames = 30): Promise<T | undefined> {
+    for (let i = 0; i < frames; i++) {
+      const value = get();
+      if (value) return value;
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    }
+    return undefined;
   }
 
   async triggerZoom(): Promise<void> {

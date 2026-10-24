@@ -8,6 +8,6 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-    return this.http.post<any>('https://localhost:7230/Login/login', { email, password });
+    return this.http.post<any>('https://api.kumigaoo.moe/Login/login', { email, password });
   }
 }

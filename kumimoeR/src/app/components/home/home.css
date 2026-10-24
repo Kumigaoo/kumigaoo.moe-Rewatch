@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+#mainDiv {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  margin: 0;
+  background-size: 102%;
+  background-position: right 19px;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-color: black;
+}

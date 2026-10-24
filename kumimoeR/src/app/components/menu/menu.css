@@ -288,6 +288,7 @@
   margin-top: 500px;
   background-image: url('/assets/Compy_Screen.png');
   background-size: cover;
+  position: relative;
 }
 .box:hover {
   cursor: url('/assets/animals-moth-pointer.png'), auto;
@@ -326,12 +327,63 @@
 pre {
   margin-left: 1.5vw;
   margin-top: 0.5vh;
-  display: table;
-  flex-wrap: wrap;
+  display: block; /* was "table", which grows to fit its content */
+  box-sizing: border-box;
   --side: calc(min(40vh, 15vw) / 2);
   width: var(--side);
+  max-width: 100%;
   font-size: 100%;
   white-space: pre-wrap;
+  overflow-wrap: anywhere; /* long words and typed input wrap instead of widening */
+}
+.box {
+  position: relative;
+}
+.terminal-wrap {
+  position: absolute;
+  inset: 0; /* if you added "top: 15%" earlier, remove it */
+  box-sizing: border-box;
+  padding: 12% 10% 6%; /* adjust to fit the monitor glass */
+  display: block;
+  overflow-y: auto; /* scrolls instead of pushing content out of the box */
+  overflow-x: hidden;
+  scrollbar-width: none; /* hide the scrollbar */
+}
+.terminal-wrap::-webkit-scrollbar {
+  display: none;
+}
+.terminal-wrap pre {
+  display: block; /* was "table", which grows to fit its content */
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  font-size: calc(var(--screen) * 0.09); /* scales with the screen */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere; /* long input wraps instead of widening */
+}
+.terminal-wrap .terminal__title {
+  margin: 0 0 0.2em;
+}
+.terminal-wrap pre.terminal {
+  white-space: normal;
+  line-height: 1.2;
+}
+.terminal-wrap .terminal__prompt {
+  margin: 0;
+  font-size: 1.5em;
+}
+.terminal-wrap .terminal__output {
+  white-space: pre-wrap;
+  font-size: 1.5em;
+  margin: 0;
+}
+.terminal__output {
+  max-width: 100%;
+  width: auto;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  flex-wrap: wrap;
 }
 .terminal__prompt {
   white-space: pre-wrap;
@@ -407,11 +459,6 @@ pre {
   font-size: 1.75em;
   opacity: 60%;
   margin-top: 0px;
-}
-.terminal__output {
-  margin-left: 0px;
-  margin-bottom: 0px;
-  flex-wrap: wrap;
 }
 .terminal__cursor {
   animation: blink 0.4s linear infinite;
