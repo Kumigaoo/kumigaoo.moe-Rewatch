@@ -176,6 +176,9 @@ export class Menu implements OnInit {
       case '21':
         this.router.navigate(['/birthday']);
         return '';
+      case 'nostalgia':
+        window.location.href = 'https://old.kumigaoo.moe';
+        return 'Going back to 2022';
       default:
         return `command not found: ${command}`;
     }
